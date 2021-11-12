@@ -6,7 +6,6 @@ import ru.ibs.homework.entitys.Gear;
 import java.util.List;
 
 public interface GearRepository extends JpaRepository<Gear, Integer> {
-    Gear findGearById(Integer gearId);
+    Gear findGearById(Integer id);
 
-    List<Gear> findGears();
 }

@@ -3,7 +3,16 @@ package ru.ibs.homework.services;
 import ru.ibs.homework.entitys.Engine;
 import ru.ibs.homework.entitys.Manual;
 
+import java.util.List;
+
 public interface ManualService {
 
-    Manual addManual(String type, Engine engine);
+    void addManual(String type);
+
+    void deleteManual(Integer id);
+
+    Manual readManual(Integer id);
+
+    List<Manual> readAllManuals();
+
 }

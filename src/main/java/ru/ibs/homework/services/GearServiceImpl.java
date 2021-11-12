@@ -21,7 +21,7 @@ public class GearServiceImpl implements GearService{
 
     @Override
     public List<Gear> findGears() {
-        return gearRepository.findGears();
+        return gearRepository.findAll();
     }
 
     @Override

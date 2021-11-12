@@ -6,6 +6,8 @@ import ru.ibs.homework.entitys.Engine;
 import ru.ibs.homework.entitys.Manual;
 import ru.ibs.homework.repository.ManualRepository;
 
+import java.util.List;
+
 @Service
 public class ManualServiceImpl implements ManualService{
 
@@ -14,9 +16,24 @@ public class ManualServiceImpl implements ManualService{
 
 
     @Override
-    public Manual addManual(String type, Engine engine) {
-        Manual newManual = new Manual("Manual for" + engine.getType());
+    public void addManual(String type) {
+        Manual newManual = new Manual("Новый мануал");
 
-        return manualRepository.save(newManual);
+        manualRepository.save(newManual);
+    }
+
+    @Override
+    public void deleteManual(Integer id) {
+        manualRepository.deleteById(id);
+    }
+
+    @Override
+    public Manual readManual(Integer id) {
+        return manualRepository.findManualById(id);
+    }
+
+    @Override
+    public List<Manual> readAllManuals() {
+        return manualRepository.findAll();
     }
 }
