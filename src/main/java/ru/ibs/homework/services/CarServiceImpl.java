@@ -16,7 +16,7 @@ public class CarServiceImpl implements CarService {
     public Car addCar(String mnfName, String modelName, String engineType) {
         final Car newCar = new Car(mnfName, modelName);
 
-        final SteeringWheel steeringWheel = new SteeringWheel(String.join(" ", newCar.getMnfName(),newCar.getModelName(),"steering wheel"));
+        final SteeringWheel steeringWheel = new SteeringWheel(String.join(" ", newCar.getMnfName(), newCar.getModelName(), "steering wheel"));
         newCar.setSteeringWheel(steeringWheel);
 
         Engine engine = new Engine(engineType);
@@ -33,6 +33,7 @@ public class CarServiceImpl implements CarService {
         Manual electricManual = new Manual("Electrics manual for " + engineType);
         engine.getManuals().add(electricManual);
         electricManual.getEngines().add(engine);
+
 
         return carRepository.save(newCar);
     }
