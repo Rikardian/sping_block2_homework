@@ -2,6 +2,16 @@ package ru.ibs.homework.services;
 
 import ru.ibs.homework.entitys.SteeringWheel;
 
+import java.util.List;
+import java.util.Optional;
+
 public interface SteeringWheelService {
-    SteeringWheel addSteeringWheel(String type);
+
+    void addSteeringWheel(String type);
+
+    void deleteSteeringWheel(Integer id);
+
+    List<SteeringWheel> readAllSteeringWheels();
+
+    SteeringWheel readSteeringWheel(Integer id);
 }

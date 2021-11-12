@@ -15,13 +15,23 @@ public class GearServiceImpl implements GearService{
     private GearRepository gearRepository;
 
     @Override
-    public Gear findGear(Car car) {
-
-        return gearRepository.findGearByEngineId(car.getEngine().getId());
+    public Gear findGear(Integer id) {
+        return gearRepository.findGearById(id);
     }
 
     @Override
-    public List<Gear> findGears(Car car) {
-        return gearRepository.findGearsByEngineId(car.getEngine().getId());
+    public List<Gear> findGears() {
+        return gearRepository.findGears();
+    }
+
+    @Override
+    public void addGear(int gearSize) {
+        final Gear gear = new Gear(gearSize);
+        gearRepository.save(gear);
+    }
+
+    @Override
+    public void deleteGear(Integer id) {
+        gearRepository.deleteById(id);
     }
 }

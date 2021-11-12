@@ -7,6 +7,8 @@ import ru.ibs.homework.entitys.Gear;
 import ru.ibs.homework.entitys.Manual;
 import ru.ibs.homework.repository.EngineRepository;
 
+import java.util.List;
+
 @Service
 public class EngineServiceImpl implements EngineService{
 
@@ -15,7 +17,7 @@ public class EngineServiceImpl implements EngineService{
 
 
     @Override
-    public Engine addEngine(String type) {
+    public void addEngine(String type) {
 
         final Engine newEngine = new Engine(type);
         for (int i = 5; i <= 10; i++) {
@@ -31,6 +33,21 @@ public class EngineServiceImpl implements EngineService{
         newEngine.getManuals().add(electricManual);
         electricManual.getEngines().add(newEngine);
 
-        return engineRepository.save(newEngine);
+        engineRepository.save(newEngine);
+    }
+
+    @Override
+    public void deleteEngine(Integer id) {
+        engineRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Engine> readAllEngines() {
+        return engineRepository.findAll();
+    }
+
+    @Override
+    public Engine readEngine(Integer id) {
+        return engineRepository.findEngineById(id);
     }
 }
