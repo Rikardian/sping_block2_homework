@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import ru.ibs.homework.entitys.*;
 import ru.ibs.homework.repository.CarRepository;
 
+import java.util.List;
+
 @Service
 public class CarServiceImpl implements CarService {
 
@@ -13,7 +15,7 @@ public class CarServiceImpl implements CarService {
     private CarRepository carRepository;
 
     @Override
-    public Car addCar(String mnfName, String modelName, String engineType) {
+    public void addCar(String mnfName, String modelName, String engineType) {
         final Car newCar = new Car(mnfName, modelName);
 
         final SteeringWheel steeringWheel = new SteeringWheel(String.join(" ", newCar.getMnfName(), newCar.getModelName(), "steering wheel"));
@@ -34,8 +36,22 @@ public class CarServiceImpl implements CarService {
         engine.getManuals().add(electricManual);
         electricManual.getEngines().add(engine);
 
+        carRepository.save(newCar);
+    }
 
-        return carRepository.save(newCar);
+    @Override
+    public void deleteCar(Integer id) {
+        carRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Car> readAllCar() {
+        return carRepository.findAll();
+    }
+
+    @Override
+    public Car readCar(Integer id) {
+        return carRepository.findCarById(id);
     }
 
 

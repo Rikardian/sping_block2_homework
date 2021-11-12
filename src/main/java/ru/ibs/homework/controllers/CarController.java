@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.homework.entitys.Car;
 import ru.ibs.homework.repository.CarRepository;
+import ru.ibs.homework.services.CarService;
 
 import java.util.Collections;
 
@@ -16,23 +17,18 @@ public class CarController {
 
 
     @Autowired
+    CarService carService;
+    @Autowired
     CarRepository carRepository;
 
     @PostMapping(value = "create", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object createCar(@RequestBody Car body){
-        return carRepository.save(body);
+    public void createCar(@RequestBody Car body){
+        carService.addCar(body.getMnfName(), body.getModelName(), body.getEngine().getType());
     }
 
     @PostMapping(value = "delete", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public void deleteCar(@RequestParam(required = true) Integer id) {
-        try {
-            if (id != null)
-                carRepository.deleteById(id);
-            else
-                throw new Exception();
-        }catch (Exception e){
-            System.out.println("Требуется ID");
-        }
+        carService.deleteCar(id);
 
     }
 
@@ -47,9 +43,12 @@ public class CarController {
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public Object showJson(@RequestParam(required = false) Integer id) {
-        return id == null
-                ? Collections.unmodifiableList(carRepository.findAll())
-                : Collections.singletonList(carRepository.findCarById(id));
+        if (id != null){
+            return carService.readCar(id);
+        }
+        else {
+            return carService.readAllCar();
+        }
     }
 
 
