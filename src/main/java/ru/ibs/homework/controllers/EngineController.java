@@ -11,7 +11,7 @@ import ru.ibs.homework.services.EngineService;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value ="/api/engine", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EngineController {
 

@@ -11,7 +11,7 @@ import ru.ibs.homework.repository.SteeringWheelRepository;
 import ru.ibs.homework.services.EngineService;
 import ru.ibs.homework.services.SteeringWheelService;
 
-@Controller
+@RestController
 @RequestMapping(value ="/api/steeringwheel", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class SteeringWheelController {
 

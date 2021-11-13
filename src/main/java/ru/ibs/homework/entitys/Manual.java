@@ -25,4 +25,8 @@ public class Manual {
         this.type  = type;
         this.engines = new LinkedList<>();
     }
+
+    public String toString() {
+        return "Мануал " + type;
+    }
 }

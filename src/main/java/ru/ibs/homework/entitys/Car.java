@@ -34,5 +34,8 @@ public class Car {
         this.modelName = modelName;
     }
 
+    public String toString() {
+        return String.join(" ", mnfName, modelName);
+    }
 
 }

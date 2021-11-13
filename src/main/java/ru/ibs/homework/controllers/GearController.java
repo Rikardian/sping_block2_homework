@@ -11,7 +11,7 @@ import ru.ibs.homework.repository.GearRepository;
 import ru.ibs.homework.services.EngineService;
 import ru.ibs.homework.services.GearService;
 
-@Controller
+@RestController
 @RequestMapping(value ="/api/gear", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class GearController {
 

@@ -25,6 +25,6 @@ public class Gear {
     }
 
     public String toString() {
-        return "Gear for engine " + engine.toString() + " with size " + getGearSize();
+        return "Gear with size " + getGearSize();
     }
 }

@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequestMapping(value ="/api/car", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class CarController {
 

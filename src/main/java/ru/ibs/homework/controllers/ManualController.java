@@ -11,7 +11,7 @@ import ru.ibs.homework.repository.ManualRepository;
 import ru.ibs.homework.services.EngineService;
 import ru.ibs.homework.services.ManualService;
 
-@Controller
+@RestController
 @RequestMapping(value ="/api/manual", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class ManualController {
 

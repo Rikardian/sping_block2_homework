@@ -22,4 +22,8 @@ public class SteeringWheel {
     public SteeringWheel(String type) {
         this.type = type;
     }
+
+    public String toString() {
+        return "Руль " +type;
+    }
 }
