@@ -11,5 +11,7 @@ public interface EngineService {
 
     List<Engine> readAllEngines();
 
-    Engine readEngine(Integer id);
+    List<Engine> readEngine(Integer id);
+
+    void updateEngine(Integer id, String type);
 }

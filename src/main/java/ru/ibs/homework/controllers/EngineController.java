@@ -6,14 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.ibs.homework.entitys.Engine;
 import ru.ibs.homework.repository.EngineRepository;
+import ru.ibs.homework.services.CarService;
 import ru.ibs.homework.services.EngineService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value ="/api/engine", consumes = {MediaType.ALL_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
 public class EngineController {
 
-    @Autowired
-    EngineRepository engineRepository;
     @Autowired
     EngineService engineService;
 
@@ -28,10 +29,8 @@ public class EngineController {
     }
 
     @PostMapping(value = "update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object updateCar(@RequestParam(required = true) Integer id, @RequestBody(required = false) Engine body) {
-        Engine engine = engineRepository.findEngineById(id);
-        engine.setType(body.getType());
-        return engineRepository.save(engine);
+    public void updateCar(@RequestParam(required = true) Integer id, @RequestBody(required = false) Engine body) {
+        engineService.updateEngine(id, body.getType());
     }
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)

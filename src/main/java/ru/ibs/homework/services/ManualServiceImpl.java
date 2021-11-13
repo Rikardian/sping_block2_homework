@@ -4,16 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.ibs.homework.entitys.Engine;
 import ru.ibs.homework.entitys.Manual;
+import ru.ibs.homework.repository.EngineRepository;
 import ru.ibs.homework.repository.ManualRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ManualServiceImpl implements ManualService{
 
     @Autowired
     ManualRepository manualRepository;
-
+    @Autowired
+    EngineRepository engineRepository;
 
     @Override
     public void addManual(String type) {
@@ -35,5 +39,13 @@ public class ManualServiceImpl implements ManualService{
     @Override
     public List<Manual> readAllManuals() {
         return manualRepository.findAll();
+    }
+
+    @Override
+    public void updateManual(Integer id, String type){
+        Manual manual = manualRepository.findManualById(id);
+        manual.setType(type);
+        manualRepository.save(manual);
+
     }
 }

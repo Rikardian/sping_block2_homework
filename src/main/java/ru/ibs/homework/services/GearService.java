@@ -14,4 +14,5 @@ public interface GearService {
 
     void deleteGear(Integer id);
 
+    void updateGear(Integer id, int size);
 }

@@ -8,7 +8,9 @@ import ru.ibs.homework.entitys.Car;
 import ru.ibs.homework.repository.CarRepository;
 import ru.ibs.homework.services.CarService;
 
+import javax.annotation.PostConstruct;
 import java.util.Collections;
+import java.util.List;
 
 
 @Controller
@@ -18,8 +20,12 @@ public class CarController {
 
     @Autowired
     CarService carService;
-    @Autowired
-    CarRepository carRepository;
+
+    @PostConstruct
+    private void postConstruct() {
+        carService.addCar("Lada", "Granta", "petrol");
+        carService.addCar("Volkswagen", "Amarok", "diesel");
+    }
 
     @PostMapping(value = "create", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public void createCar(@RequestBody Car body){
@@ -33,12 +39,8 @@ public class CarController {
     }
 
     @PostMapping(value = "update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object updateCar(@RequestParam(required = true) Integer id, @RequestBody(required = false) Car body) {
-        Car newCar = carRepository.findCarById(id);
-        newCar.setMnfName(body.getMnfName());
-        newCar.setModelName(body.getModelName());
-        newCar.setEngine(body.getEngine());
-        return carRepository.save(newCar);
+    public void updateCar(@RequestParam(required = true) Integer id, @RequestBody(required = false) Car body) {
+        carService.updateCar(id, body.getMnfName(), body.getModelName(), body.getEngine());
     }
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)

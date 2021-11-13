@@ -1,6 +1,7 @@
 package ru.ibs.homework.services;
 
 import ru.ibs.homework.entitys.Car;
+import ru.ibs.homework.entitys.Engine;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface CarService {
 
     List<Car> readAllCar();
 
-    Car readCar(Integer id);
+    List<Car> readCar(Integer id);
 
-
+    void updateCar(Integer id, String mnfName, String modelName, Engine engine);
 }

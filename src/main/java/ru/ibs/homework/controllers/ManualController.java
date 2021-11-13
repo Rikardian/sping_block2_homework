@@ -16,9 +16,8 @@ import ru.ibs.homework.services.ManualService;
 public class ManualController {
 
     @Autowired
-    ManualRepository manualRepository;
-    @Autowired
     ManualService manualService;
+
 
     @PostMapping(value = "create", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
     public void createManual(@RequestBody Manual body){
@@ -31,10 +30,8 @@ public class ManualController {
     }
 
     @PostMapping(value = "update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object updateManual(@RequestParam(required = true) Integer id, @RequestBody(required = false) Manual body) {
-        Manual manual = manualRepository.findManualById(id);
-        manual.setType(body.getType());
-        return manualRepository.save(manual);
+    public void updateManual(@RequestParam(required = true) Integer id, @RequestBody(required = false) Manual body) {
+        manualService.updateManual(id, body.getType());
     }
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)

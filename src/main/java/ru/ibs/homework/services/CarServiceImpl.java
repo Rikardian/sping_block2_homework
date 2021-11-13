@@ -22,11 +22,6 @@ public class CarServiceImpl implements CarService {
         newCar.setSteeringWheel(steeringWheel);
 
         Engine engine = new Engine(engineType);
-        for (int i = 5; i <= 10; i++) {
-            final Gear gear = new Gear(i);
-            gear.setEngine(engine);
-            engine.getGears().add(gear);
-        }
         newCar.setEngine(engine);
 
         Manual cylinderHeadManual = new Manual("Cylinder head manual for " + engineType);
@@ -50,8 +45,17 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car readCar(Integer id) {
+    public List<Car> readCar(Integer id) {
         return carRepository.findCarById(id);
+    }
+
+    @Override
+    public void updateCar(Integer id, String mnfName, String modelName, Engine engine) {
+        List<Car> newCar = carRepository.findCarById(id);
+        newCar.get(0).setMnfName(mnfName);
+        newCar.get(0).setModelName(modelName);
+        newCar.get(0).setEngine(engine);
+        carRepository.save(newCar.get(0));
     }
 
 

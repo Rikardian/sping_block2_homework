@@ -16,8 +16,6 @@ import ru.ibs.homework.services.SteeringWheelService;
 public class SteeringWheelController {
 
     @Autowired
-    SteeringWheelRepository steeringWheelRepository;
-    @Autowired
     SteeringWheelService steeringWheelService;
 
     @PostMapping(value = "create", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,10 +29,8 @@ public class SteeringWheelController {
     }
 
     @PostMapping(value = "update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object updateSteeringWheel(@RequestParam(required = true) Integer id, @RequestBody(required = false) SteeringWheel body) {
-        SteeringWheel steeringWheel = steeringWheelRepository.findSteeringWheelById(id);
-        steeringWheel.setType(body.getType());
-        return steeringWheelRepository.save(steeringWheel);
+    public void updateSteeringWheel(@RequestParam(required = true) Integer id, @RequestBody(required = false) SteeringWheel body) {
+        steeringWheelService.updateSteeringWheel(id, body.getType());
     }
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)

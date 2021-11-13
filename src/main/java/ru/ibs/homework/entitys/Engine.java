@@ -20,18 +20,12 @@ public class Engine {
 
     String type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "engine")
-
-    // @OneToMany(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "ENGINE_ID", referencedColumnName = "ID")
-    private List<Gear> gears;
 
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Manual> manuals;
 
     public Engine(String engineType) {
         this.type = engineType;
-        this.gears = new LinkedList<>();
         this.manuals = new LinkedList<>();
     }
 

@@ -14,4 +14,6 @@ public interface SteeringWheelService {
     List<SteeringWheel> readAllSteeringWheels();
 
     SteeringWheel readSteeringWheel(Integer id);
+
+    void updateSteeringWheel(Integer id, String type);
 }

@@ -2,7 +2,9 @@ package ru.ibs.homework.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.ibs.homework.entitys.Car;
 import ru.ibs.homework.entitys.SteeringWheel;
+import ru.ibs.homework.repository.CarRepository;
 import ru.ibs.homework.repository.SteeringWheelRepository;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public class SteeringWheelServiceImpl implements SteeringWheelService{
 
     @Autowired
     SteeringWheelRepository steeringWheelRepository;
+    @Autowired
+    CarRepository carRepository;
 
     @Override
     public void addSteeringWheel(String type) {
@@ -22,6 +26,8 @@ public class SteeringWheelServiceImpl implements SteeringWheelService{
 
     @Override
     public void deleteSteeringWheel(Integer id) {
+        Car car = carRepository.findCarBySteeringWheelId(id);
+        car.setSteeringWheel(null);
         steeringWheelRepository.deleteById(id);
     }
 
@@ -33,5 +39,12 @@ public class SteeringWheelServiceImpl implements SteeringWheelService{
     @Override
     public SteeringWheel readSteeringWheel(Integer id) {
         return steeringWheelRepository.findSteeringWheelById(id);
+    }
+
+    @Override
+    public void updateSteeringWheel(Integer id, String type){
+        SteeringWheel steeringWheel = steeringWheelRepository.findSteeringWheelById(id);
+        steeringWheel.setType(type);
+        steeringWheelRepository.save(steeringWheel);
     }
 }

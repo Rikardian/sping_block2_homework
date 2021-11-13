@@ -16,8 +16,6 @@ import ru.ibs.homework.services.GearService;
 public class GearController {
 
     @Autowired
-    GearRepository gearRepository;
-    @Autowired
     GearService gearService;
 
     @PostMapping(value = "create", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,10 +29,8 @@ public class GearController {
     }
 
     @PostMapping(value = "update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Object updateCar(@RequestParam(required = true) Integer id, @RequestBody(required = false) Gear body) {
-        Gear gear = gearRepository.findGearById(id);
-        gear.setGearSize(body.getGearSize());
-        return gearRepository.save(gear);
+    public void updateGear(@RequestParam(required = true) Integer id, @RequestBody(required = false) Gear body) {
+        gearService.updateGear(id, body.getGearSize());
     }
 
     @GetMapping(value = "read", consumes = {MediaType.ALL_VALUE}, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -15,4 +15,5 @@ public interface ManualService {
 
     List<Manual> readAllManuals();
 
+    void updateManual(Integer id, String type);
 }
