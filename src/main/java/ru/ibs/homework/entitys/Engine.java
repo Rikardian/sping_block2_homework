@@ -1,5 +1,6 @@
 package ru.ibs.homework.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Engine {
     String type;
 
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Manual> manuals;
 

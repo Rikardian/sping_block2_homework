@@ -1,5 +1,6 @@
 package ru.ibs.homework.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ public class Gear {
 
     private int gearSize;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ENGINE_ID", referencedColumnName = "ID")
     private Engine engine;

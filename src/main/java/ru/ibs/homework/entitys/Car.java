@@ -1,5 +1,6 @@
 package ru.ibs.homework.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,15 +17,17 @@ public class Car {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "MANUFACTURE")
+
     private String mnfName;
 
-    @Column(name = "MODEL")
+
     private String modelName;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     private Engine engine;
 
+    @JsonIgnore
     @JoinColumn(name = "WHEEL_ID")
     @OneToOne(cascade = CascadeType.ALL)
     private SteeringWheel steeringWheel;
